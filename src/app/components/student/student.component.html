@@ -1,0 +1,55 @@
+
+
+  <!-- <h3 *ngIf="students; else noStudent">{{ title }}</h3> -->
+  <app-classroom></app-classroom>   
+  <ng-template #noStudent>
+    <div class="alert alert-danger" role="alert"><h3>Bu sınıfta öğrenci yoktur.</h3></div>
+  </ng-template>
+  
+  <div *ngIf="dataLoaded==false" class="spinner-border text-warning" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+  
+  <div class="mb-3">
+    <label for="filterText" class="form-label">Öğrenci Ara</label>
+    <input type="text" [(ngModel)]="filterText" class="form-control" id="filterText" placeholder="Arama ifadesi giriniz.">
+  </div>
+
+  <div *ngIf="filterText.length>2" class="alert alert-success">
+    {{filterText}} aradınız.
+  </div>
+  
+
+  <table table *ngIf="dataLoaded==true" class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">No</th>
+        <th scope="col">Öğrenci</th>
+        <th scope="col">Sınıfı</th>
+        <th scope="col">Sınıf KDV</th>
+        <th scope="col">Cinsiyet</th>
+        <th scope="col">Resim</th>
+        <th>Fotoğraf</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr  *ngFor="let student of students | filterPipe:filterText">        
+        <td>{{student.id}}</td>
+        <td>{{student.name |uppercase}}</td>        
+        <td>{{student.classId}}</td>
+        <td>{{student.classId | vatAdded:18 | currency}}</td>
+        <td>{{student.gender}}</td>
+        <td>{{student.image}}</td>        
+        <td><img
+          [src]="getStudentImage(student)"
+          class="img-thumbnail​​​​"
+          alt="..."
+        />
+      </td>
+        <td><button (click)="addToCart(student)" type="button" class="btn btn-success">Sepete ekle</button></td>
+      </tr>
+      
+    </tbody>
+  </table>
+

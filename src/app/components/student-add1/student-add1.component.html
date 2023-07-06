@@ -1,0 +1,63 @@
+<div class="content">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="title">{{ title }}</h5>
+            </div>
+            <div class="card-body">
+                <form #studentAddForm="ngForm" (ngSubmit)="add(studentAddForm)">
+                    <div class="mb-3">
+                        <label for="id">Numarası</label>
+                        <div class="form-group">
+                            <input type="number" name="id" id="id" class="form-control" autofocus placeholder="Öğrenci numarası"
+                                #id="ngModel" [(ngModel)]="model.id" required />
+                            <div *ngIf="id.invalid && id.dirty" class="alert alert-danger">
+                                Öğrenci numarası gereklidir.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="name">Öğrenci adı</label>
+                        <div class="form-group">
+                            <input type="text" name="name" id="name" class="form-control" placeholder="Öğrenci adı"
+                                #name="ngModel" [(ngModel)]="model.name" required />
+                            <div *ngIf="name.invalid && name.dirty" class="alert alert-danger">
+                                Öğrenci adı gereklidir.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="gender">Cinsiyeti</label>
+                        <div class="form-group">
+                            <input type="text" name="gender" id="gender" class="form-control" placeholder="Cinsiyeti"
+                                #gender="ngModel" [(ngModel)]="model.gender" required />
+                            <div *ngIf="gender.invalid && gender.dirty" class="alert alert-danger">
+                                Cinsiyeti gereklidir.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="classId">Sınıfı</label>
+                        <div class="form-group">
+                            <select id="classId" required class="form-control" #classId="ngModel" [(ngModel)]="model.classId" 
+                                name="classId">
+                                <option *ngFor="let classroom of classrooms" [value]="classroom.id">
+                                    {{ classroom.name }}
+                                </option>
+                            </select>
+                            <div *ngIf="classId.invalid && classId.touched" class="alert alert-danger">
+                                Sınıf seçimi gereklidir.
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary" [disabled]="studentAddForm.invalid">
+                        Öğrenci Ekle
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

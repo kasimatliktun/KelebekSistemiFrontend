@@ -1,0 +1,21 @@
+<!-- <div *ngIf="dataLoaded==false" class="spinner-border text-warning" role="status">
+  <span class="visually-hidden">Loading...</span>
+</div>
+ 
+  <ul class="list-group">
+    <li  [class]="getAllClassroomClass()" routerLink = "/students">{{title}}</li>
+    <li  (click)="setCurrentClassroom(classroom)" 
+    routerLink = "/students/classroom/{{classroom.id}}"
+    *ngFor="let classroom of classrooms"
+    [class]="getCurrentClassroomClass(classroom)">    {{classroom.abbreviation | uppercase}}
+  </li>
+  </ul> -->
+  <h5 *ngIf="this.currentClassroom">{{this.currentClassroom.abbreviation}} seçtiniz</h5>
+
+  <div class="nav-scroller py-1 mb-2">
+    <nav class="nav d-flex justify-content-between">
+      <a class="p-2 link-secondary" routerLink = "/students">Tümü</a>
+      <a *ngFor="let classroom of classrooms" class="p-2 link-secondary" routerLink = "/students/classroom/{{classroom.id}}">{{classroom.abbreviation | uppercase}}</a>
+      
+    </nav>
+  </div>   

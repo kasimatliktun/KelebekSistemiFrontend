@@ -1,0 +1,109 @@
+<div class="content">
+  <div class="col-md-5">
+      <div class="card">
+          <div class="card-header">
+              <h3 class="title text-center">Kayıt</h3>
+          </div>
+          <div class="card-body">
+              <form [formGroup]="registerForm">
+
+                  <div class="mb-3">
+                      <label for="email">E-Posta</label>
+                      <div class="form-group">
+                          <input type="email" id="email" formControlName="email" class="form-control" maxlength=35 placeholder="E-Posta"  />                              
+                              <div class="alert alert-danger"  *ngIf="registerForm.get('email').invalid && registerForm.get('email').touched">
+                                <div *ngIf="registerForm.get('email').hasError('email')">Geçerli bir email adresi girmelisiniz.</div>
+                                <div *ngIf="registerForm.get('email').hasError('required')">Email adresi gereklidir.</div>                                
+                                <div *ngIf="registerForm.get('email').hasError('minlength')">Mail adresiniz en az 10 karakter uzunluğunda olmalıdır.</div>
+                              </div>
+                      </div>
+                  </div>
+
+
+                  <div class="mb-3">
+                    <label for="password">Parola</label>
+                    <div class="form-group">
+                        <input type="password" id="password" formControlName="password" class="form-control" maxlength=20
+                            placeholder="Parola" />
+                            <div class="alert alert-danger"  *ngIf="registerForm.get('password').invalid && registerForm.get('password').touched">                                
+                                <div *ngIf="registerForm.get('password').hasError('required')">Parola alanı gereklidir.</div>                                
+                                <div *ngIf="registerForm.get('password').hasError('minlength')">Parolanız en az 5 karakter uzunluğunda olmalıdır.</div>
+                              </div>
+                    </div>
+                </div>
+               
+                <div class="mb-3">
+                    <label for="passwordConfirmation">Parola Tekrarı</label>
+                    <div class="form-group">
+                        <input type="password" id="passwordConfirmation" formControlName="passwordConfirmation"  class="form-control" maxlength=20
+                            placeholder="Parolayı tekrar giriniz" />
+                            <div class="alert alert-danger"  *ngIf="registerForm.get('passwordConfirmation').invalid && registerForm.get('passwordConfirmation').touched">                                
+                                <div *ngIf="registerForm.get('passwordConfirmation').hasError('required')">Tekrar parola alanı gereklidir.</div>                                
+                                <div *ngIf="registerForm.get('passwordConfirmation').hasError('mismatch')!=null">Bu alan parolanızla aynı olmalıdır.</div>
+                              </div>
+                    </div>
+                </div>
+                  
+                <div class="mb-3">
+                  <label for="firstName">Adınız</label>
+                  <div class="form-group">
+                      <input type="text" id="firstName" formControlName="firstName" class="form-control" maxlength=20
+                          placeholder="Adınız" />                          
+                          <div class="alert alert-danger"  *ngIf="registerForm.get('firstName').invalid && registerForm.get('firstName').touched">                                
+                            <div *ngIf="registerForm.get('firstName').hasError('required')">Ad alanı gereklidir.</div>                                
+                            <div *ngIf="registerForm.get('firstName').hasError('minlength')">Adınız en az 3 karakter uzunluğunda olmalıdır.</div>
+                          </div>
+                    
+                  </div>
+              </div>
+
+              <div class="mb-3">
+                <label for="lastName">Soyadınız</label>
+                <div class="form-group">
+                  <input type="text" id="lastName" formControlName="lastName" class="form-control" maxlength=20
+                        placeholder="Soyadınız" />
+                        <div class="alert alert-danger"  *ngIf="registerForm.get('lastName').invalid && registerForm.get('lastName').touched">                                
+                            <div *ngIf="registerForm.get('lastName').hasError('required')">Soyad alanı gereklidir.</div>                                
+                            <div *ngIf="registerForm.get('lastName').hasError('minlength')">Soyadınız en az 2 karakter uzunluğunda olmalıdır.</div>
+                          </div>
+                        
+                </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="numara">Okul Numaranız</label>
+              <div class="form-group">
+                  <input type="number" id="numara" formControlName="numara" class="form-control"
+                      placeholder="Numaranız" />
+                      <div class="alert alert-danger"  *ngIf="registerForm.get('numara').hasError('required') && registerForm.get('numara').dirty">Okul numara alanı gereklidir.</div>
+              </div>
+          </div>
+          <div class="mb-3">
+            <label for="sinif">Sınıfınız</label>
+            <div class="form-group">
+                <select id="sinif" required class="form-control" formControlName="sinif" 
+                    name="sinif">
+                    <option *ngFor="let classroom of classrooms" [value]="classroom.id">
+                        {{ classroom.name }}
+                    </option>
+                </select>
+                <div *ngIf="registerForm.get('sinif').hasError('required') && registerForm.get('sinif').touched" class="alert alert-danger">
+                    Sınıf seçimi gereklidir.
+                </div>
+            </div>
+        </div>
+
+
+                  <button type="submit" class="btn btn-primary mx-auto d-block" [disabled]="registerForm.invalid" (click)="register()">
+                      Kaydol
+                  </button>
+
+              </form>
+          </div>
+          
+      </div>
+
+  </div>
+
+</div>
+

@@ -1,0 +1,119 @@
+   <p></p>
+  <div class="col-md-4">
+    <select 
+      [(ngModel)]="examFilter"
+      
+      class="form-select mb-3"
+      aria-label=".form-select-lg example"
+    >
+      <option value="0" selected>Sınav Seçiniz.</option>
+      <option *ngFor="let exam of exams" [value]="exam.id">
+        {{ exam.name }}
+      </option>
+    </select>
+  </div>
+
+  <div *ngIf="examFilter>0">
+  <label>
+    <input type="radio" name="gender" value="salon" [(ngModel)]="selectedYer">
+    Salon Yerlerini Göster
+  </label>
+  <br>
+  <label>
+    <input type="radio" name="gender" value="sinif" [(ngModel)]="selectedYer">
+    Sınıf Dağılımını Göster
+  </label>
+</div>
+  <div class="col-md-4">
+    <select *ngIf="examFilter>0 && selectedYer=='sinif'"
+      [(ngModel)]="classFilter"
+      (change)="GetByExamIdClassId(examFilter, classFilter)"
+      class="form-select mb-3"
+      aria-label=".form-select-lg example"
+    >
+      <option value="0" selected>Sınıf Seçiniz.</option>
+      <option *ngFor="let classroom of classrooms" [value]="classroom.id">
+        {{ classroom.name }}
+      </option>
+    </select>
+  </div>
+
+  <div class="col-md-4">
+    <select *ngIf="examFilter>0 && selectedYer=='salon'"
+      [(ngModel)]="salonFilter"
+      (change)="GetByExamIdSalonId(examFilter, salonFilter)"
+      class="form-select mb-3"
+      aria-label=".form-select-lg example"
+    >
+      <option value="0" selected>Salon Seçiniz.</option>
+      <option *ngFor="let salon of salons" [value]="salon.id">
+        {{ salon.name }}
+      </option>
+    </select>
+  </div>
+  <div *ngIf="dataLoaded==false" class="spinner-border text-warning" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+  
+  <h3 *ngIf="dataLoaded==true; else noDagitim"></h3>
+  <ng-template #noDagitim>
+    <div class="alert alert-danger" role="alert"><h3>Dağıtım henüz hazırlanmamıştır.</h3></div>
+  </ng-template>
+
+  <div *ngIf="dataLoaded==true && dagitims.length == 0 " dagitims  class="cardbody row" >
+
+    <h4>Sınav yeri görüntüleme sınava 60 dakika kala açıklanmaktadır.<br> O saatte tekrar deneyiniz.</h4>
+  </div>
+
+
+  <table table *ngIf="classFilter>0 && dagitims.length > 0 " class="table table-hover">
+    <thead>
+      <tr>        
+        <th scope="col">Öğrenci No</th>   
+        <th scope="col">Öğrenci Adı</th>              
+        <th scope="col">Sınav Yeri</th>
+        <th scope="col">Salon Sırası</th>                
+      </tr>
+    </thead>
+    <tbody>
+      <tr  *ngFor="let dagitim of dagitims">                
+        <td>{{dagitim.stdntNo}}</td>
+        <td>{{dagitim.stdntName}}</td>        
+        <td>{{dagitim.salonName}}</td>        
+        <td>{{dagitim.yer}}</td>  
+            
+      </tr>
+      
+    </tbody>
+  </table>
+
+
+
+
+  
+  <div *ngIf="salonFilter>0 && dagitims.length > 0 " class="cardbody row" >
+    <div *ngFor="let dagitim of dagitims" class="card col-md-4" style="width: 10rem">
+      
+        <img
+        [src]="getStudentImage(dagitim.stdntNo)"
+        class="img-thumbnail​​​​"
+          alt="..."
+        />
+
+        <div class="card-body">
+          <h3 class="card-title text-center">{{ dagitim.yer }}</h3>
+        </div>
+        <ul class="list-group list-group-flush text-center text-bolder">
+          <li class="list-group-item">
+            {{ dagitim.stdntName }}
+          </li>
+          <li class="list-group-item">
+            <i><b>Sınıfı</b></i> | {{ dagitim.stdntClass }}
+          </li>
+          
+        </ul>
+      
+    </div>
+    
+    <br />
+  </div>

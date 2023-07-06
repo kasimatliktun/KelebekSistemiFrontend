@@ -1,0 +1,64 @@
+<div class="content">
+    <div class="col-md-5">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="title text-center">Öğrenci Ekle</h3>
+            </div>
+            <div class="card-body">
+                <form [formGroup]="studentAddForm">
+
+                    <div class="mb-3">
+                        <label for="classId">Sınıfı</label>
+                        <div class="form-group">
+                            <select id="classId" required class="form-control" formControlName="classId" 
+                                name="classId">
+                                <option *ngFor="let classroom of classrooms" [value]="classroom.id">
+                                    {{ classroom.name }}
+                                </option>
+                            </select>
+                            <div *ngIf="studentAddForm.get('classId').hasError('required') && studentAddForm.get('classId').touched" class="alert alert-danger">
+                                Sınıf seçimi gereklidir.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="id">Numarası</label>
+                        <div class="form-group">
+                            <input type="number" id="id" formControlName="id" class="form-control"
+                                placeholder="Numarası" autofocus />
+                                <div class="alert alert-danger"  *ngIf="studentAddForm.get('id').hasError('required') && studentAddForm.get('id').dirty">Numara alanı gereklidir.</div>
+                        
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="name">Öğrenci adı</label>
+                        <div class="form-group">
+                            <input type="text" id="name" formControlName="name" class="form-control"
+                                placeholder="Öğrenci adı" />
+                                <div class="alert alert-danger"  *ngIf="studentAddForm.get('name').hasError('required') && studentAddForm.get('name').dirty">Öğrenci adı gereklidir.</div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="gender">Cinsiyet</label>
+                        <div class="form-group">
+                            <input type="text" id="gender" formControlName="gender" class="form-control"
+                                placeholder="Cinsiyet" />
+                                <div class="alert alert-danger"  *ngIf="studentAddForm.get('gender').hasError('required') && studentAddForm.get('gender').dirty">Cinsiyet alanı gereklidir.</div>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary mx-auto d-block" [disabled]="studentAddForm.invalid" (click)="add()">
+                        Öğrenci Ekle
+                    </button>
+
+                </form>
+            </div>
+            
+        </div>
+
+    </div>
+
+</div>

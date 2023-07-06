@@ -1,0 +1,91 @@
+<div class="content">
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="title text-center">Sınav Ekle</h3>
+                
+            </div>
+            <div class="card-body">
+                <form [formGroup]="examAddForm">
+
+                    <div class="mb-2">
+                        <label for="name">Sınav Adı</label>
+                        <div class="form-group">
+                            <input type="text" id="name" formControlName="name" class="form-control"
+                                placeholder="Sınav adı" />
+                            <div class="alert alert-danger"
+                                *ngIf="examAddForm.get('name').hasError('required') && examAddForm.get('name').dirty">
+                                Sınav adı gereklidir.</div>
+                        </div>
+                    </div>
+
+                    <div class="mb-2">
+                        <label for="day">Gün</label>
+                        <div class="form-group">
+                            <select formControlName="day" class="form-control" id="day">
+                                <option value="PAZARTESİ">PAZARTESİ</option>
+                                <option value="SALI" selected>SALI</option>
+                                <option value="ÇARŞAMBA">ÇARŞAMBA</option>
+                                <option value="PERŞEMBE">PERŞEMBE</option>
+                                <option value="CUMA">CUMA</option>
+                                <option value="CUMARTESİ">CUMARTESİ</option>
+                                <option value="PAZAR">PAZAR</option>
+                              </select>
+
+                        </div>
+                    </div>
+
+                    <div class="mb-2">
+                        <label for="dersSaati">Ders Saati</label>
+                        <div class="form-group">
+                            <input type="number" id="dersSaati" formControlName="dersSaati" class="form-control"
+                                placeholder="Ders Saati" />
+                            <div class="alert alert-danger"
+                                *ngIf="examAddForm.get('dersSaati').hasError('required') && examAddForm.get('dersSaati').dirty">
+                                Ders Saati alanı gereklidir.</div>
+                        </div>
+                    </div>
+
+                    <div class="mb-2">
+                        <label for="dates">Sınav Tarihi</label>
+                        <div class="form-group">
+                            <input type="date" id="dates" formControlName="dates" class="form-control"
+                                 />
+                            <div class="alert alert-danger"
+                                *ngIf="examAddForm.get('dates').hasError('required') && examAddForm.get('dates').dirty">
+                                Tarih alanı gereklidir.</div>
+                        </div>
+                    </div>
+
+                    <div class="mb-2">
+                        <label for="times">Sınav Saati</label>
+                        <div class="form-group">
+                            <input type="time" id="times" formControlName="times" class="form-control"/>
+                            <div class="alert alert-danger"
+                                *ngIf="examAddForm.get('times').hasError('required') && examAddForm.get('times').dirty">
+                                Saat alanı gereklidir.</div>
+                        </div>
+                    </div>
+
+                    <div class="mb-2">
+                        <label for="declaration">Açıklama</label>
+                        <div class="form-group">
+                            <input type="text" id="declaration" formControlName="declaration" class="form-control"
+                                placeholder="Açıklama" />
+                                
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary mx-auto d-block" [disabled]="examAddForm.invalid"
+                        (click)="addExam()">
+                        Sınav Ekle
+                    </button>
+
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,28 @@
+
+<br>
+ 
+ 
+  <table table *ngIf="dataLoaded==true" class="table table-hover">
+    <thead>
+      <tr>        
+        <th scope="col">Sınav Adı</th>
+        <th scope="col">Günü</th>
+        <th scope="col">Ders Saati</th>
+        <th scope="col">Tarihi</th>
+        <th scope="col">Saati</th>
+        
+        
+      </tr>
+    </thead>
+    <tbody>
+      <tr  *ngFor="let exam of exams"> <!--//filterPipe:filterText"-->                
+        <td>{{exam.name |uppercase}}</td>        
+        <td>{{exam.day}}</td>
+        <td>{{exam.dersSaati}}</td>  
+        <td>{{exam.dates | date:'dd/MM/yyyy'}}</td>
+        <td>{{exam.dates | date:'HH.mm'}}</td>
+
+        </tr>
+      
+    </tbody>
+  </table>

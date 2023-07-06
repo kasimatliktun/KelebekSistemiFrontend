@@ -1,0 +1,49 @@
+<p></p>
+
+<div *ngIf="dataLoaded==false" class="spinner-border text-warning" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+
+
+
+  <div *ngIf="dagitims !=null" dagitims  class="cardbody row" >
+    <div  class="card col-md-6" style="width: 14rem">
+      
+        <img        
+        [src]="getStudentImage(dagitims.image)"
+        class="img-thumbnail​​​​"
+          alt="..."
+        />
+
+        <div class="card-body">
+          <h3 class="card-title text-center">{{ dagitims.stdntNo }}</h3>
+        </div>
+        <ul class="list-group list-group-flush text-center text-bolder">
+          <li class="list-group-item">
+            {{ dagitims.stdntName }}
+          </li>
+          <li class="list-group-item">
+            <b><i>Sınav</i></b> | {{ dagitims.examName }}
+          </li>
+          <li class="list-group-item">
+            <i><b>Sınıfı</b></i> | {{ dagitims.stdntClass }}
+          </li>
+          <li class="list-group-item">
+            <i><b>Sınav Salonu</b></i> | {{ dagitims.salonName }}
+          </li>
+          <li class="list-group-item">
+            <i><b>Sınav Yeri</b></i> | {{ dagitims.yer }}
+          </li>
+          
+        </ul>
+      
+    </div>
+    
+    <br />
+  </div>
+  <div *ngIf="dataLoaded==true && dagitims ==null" dagitims  class="cardbody row" >
+
+    <h4>Sınav yeri görüntüleme sınava 60 dakika kala açıklanmaktadır.<br> O saatte tekrar deneyiniz.</h4>
+  </div>
+
+

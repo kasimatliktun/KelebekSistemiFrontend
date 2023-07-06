@@ -1,0 +1,74 @@
+
+<body>
+    <br>    
+  <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="#">TOKİ Kelebek Sistemi</a>
+    <a class="navbar-brand" href="#" routerLink="/dagitimdtos">..</a>
+    <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="navbar-nav">
+      <div class="nav-item text-nowrap">
+        <div class="flex">
+          <a *ngIf="isLoggedIn()==false" class="nav-link" routerLink="/login" class="btn btn-dark  ml-1"><i class="fa fa-user-circle"></i>  Giriş</a>
+        <a *ngIf="isLoggedIn()==false" class="nav-link" routerLink="/register"  class="btn btn-dark ml-1"><i class="fa fa-user-plus" aria-hidden="true"></i> Kaydol</a>
+        <a *ngIf="isLoggedIn()==true" class="nav-link mb-1" class="btn btn-dark ml-1" href="#"  (click) = "logOut()"> <i class="fa fa-fw fa-power-off"></i> Çıkış</a>
+
+      </div>  
+      </div>
+    </div>
+  </header>
+  
+  <div class="container-fluid">
+    <div class="row">
+      <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+        <div class="position-sticky pt-3 sidebar-sticky">
+          <ul class="nav flex-column">
+           
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/exam">
+                <span data-feather="file" class="align-text-bottom"></span>
+                Yazılılar
+              </a>
+            </li>
+            
+            
+            <li class="nav-item">
+              <a class="nav-link" href="#" routerLink="/dagitimdtostudent">
+                <span data-feather="layers" class="align-text-bottom"></span>
+                Öğrenci Bireysel
+              </a>
+            </li>
+
+          </ul>
+  
+                  
+        </div>
+      </nav>
+  
+      <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+
+        <router-outlet></router-outlet>      
+      </main>
+    </div>
+  </div>
+  
+    </body>
+
+
+<!--//--------------------
+
+<div class="container">
+  <app-navi></app-navi>
+  <div class="row">
+    <div class="col-md-3">
+      <app-classroom></app-classroom>   
+      <app-exam></app-exam> 
+    </div>
+    <div class="col-md-9">
+      
+    </div>
+  </div>  
+</div>
+--->

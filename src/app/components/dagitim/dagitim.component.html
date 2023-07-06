@@ -1,0 +1,56 @@
+<div *ngIf="dataLoaded==false" class="spinner-border text-warning" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+   
+  <div class="col-md-4">
+    <select 
+      [(ngModel)]="examFilter"
+      (change)="GetByExamId(examFilter)"
+      class="form-select mb-3"
+      aria-label=".form-select-lg example"
+    >
+      <option value="0" selected>Sınav Seçiniz.</option>
+      <option *ngFor="let exam of exams" [value]="exam.id">
+        {{ exam.name }}
+      </option>
+    </select>
+  </div>
+  
+  <div class="col-md-4">
+    <select *ngIf="examFilter>0"
+      [(ngModel)]="salonFilter"
+      (change)="GetByExamIdSalonId(examFilter, salonFilter)"
+      class="form-select mb-3"
+      aria-label=".form-select-lg example"
+    >
+      <option value="0" selected>Salon Seçiniz.</option>
+      <option *ngFor="let salon of salons" [value]="salon.id">
+        {{ salon.name }}
+      </option>
+    </select>
+  </div>
+
+  <h3 *ngIf="dataLoaded==true; else noDagitim">{{ title }}</h3>
+  <ng-template #noDagitim>
+    <div class="alert alert-danger" role="alert"><h3>Dağıtım henüz hazırlanmamıştır.</h3></div>
+  </ng-template>
+
+  <table table *ngIf="dataLoaded==true" class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Sınav Adı Adı</th>
+        <th scope="col">Öğrenci No</th>        
+        <th scope="col">Salon No</th>
+        <th scope="col">Salon Sıra</th>        
+      </tr>
+    </thead>
+    <tbody>
+      <tr  *ngFor="let dagitim of dagitims">        
+        <td>{{dagitim.name |uppercase}}</td>        
+        <td>{{dagitim.stdntId}}</td>
+        <td>{{dagitim.salonId}}</td>
+        <td>{{dagitim.yer}}</td>        
+      </tr>
+      
+    </tbody>
+  </table>

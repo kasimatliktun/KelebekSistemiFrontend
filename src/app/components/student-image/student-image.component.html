@@ -1,0 +1,25 @@
+
+<table class="table table-secondary table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Student Id</th>
+            <th>Image Path</th>
+            <th>Date</th>            
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let studentImage of studentImages">   
+            <td >{{studentImage.id}}</td>   
+            <td >{{studentImage.studentId}}</td>               
+            <td><img
+                [src]="getStudentImage(studentImage.imagePath)"
+                class="img-thumbnail​​​​"
+                alt="..."
+              />
+            </td> 
+            <td >{{studentImage.date}}</td>  
+        </tr>       
+    </tbody>   
+</table>
+

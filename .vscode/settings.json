@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/5b6ac8e2-db9d-48f4-8320-c36f42eb7ee7/resourceGroups/ButterFly_group/providers/Microsoft.Web/sites/angulartoki",
+    "appService.deploySubpath": "dist\\butterfly"
+}
